@@ -12,8 +12,8 @@ class UIMFReader(object):
         self.uimf_file = uimf_file
         self.TIC_threshold = TIC_threshold
         
-        self.global_params = self.__run_query('SELECT * FROM Global_Params;')
-        self.frame_params = self.__run_query('SELECT * FROM V_Frame_Params;')
+        self.global_params = self.__run_query('SELECT * FROM Global_Param*;')
+        self.frame_params = self.__run_query('SELECT * FROM V_Frame_Param*;')
         
         self.__calibration_params_by_frame = self.frame_params.pivot(index='FrameNum', columns='ParamName', values='ParamValue')\
             [['CalibrationSlope','CalibrationIntercept']].to_dict(orient='index')
